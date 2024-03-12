@@ -1,5 +1,6 @@
 # Custom Installation Guide for Ubuntu Server
-
+RPC:
+https://rpc.namada.posthuman.digital:443
 ## Introduction
 
 This custom guide outlines the process for manually setting up a server environment on Ubuntu, focusing on installing specific software with security and efficiency in mind. It covers everything from updating system packages to configuring essential services.
