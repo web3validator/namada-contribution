@@ -130,3 +130,85 @@ EOF
 ```
 
 This guide is intended for advanced users comfortable with command-line interfaces and system administration.
+
+## 🔎 Create and Fund Wallet
+
+### Create Wallet:
+```bash
+namadaw gen --alias $WALLET
+```
+
+### Restore Existing Wallet:
+```bash
+namadaw derive --alias $WALLET
+```
+
+### Find Your Wallet Address:
+```bash
+namadaw find --alias $WALLET
+```
+- Copy the implicit address (starts with tnam...) for the next step.
+
+### Fund Your Wallet from Faucet
+- After a couple of minutes, check the balance:
+```bash
+namadac balance --owner $WALLET
+```
+
+### List Known Keys and Addresses in the Wallet:
+```bash
+namadaw list
+```
+
+### Delete Wallet:
+```bash
+namadaw remove --alias $WALLET --do-it
+```
+
+### Check Sync Status:
+- Once your node is fully synced, the output will confirm:
+```bash
+curl http://127.0.0.1:26657/status | jq
+```
+
+## 🧑‍🎓 Turn Your Full Node into a Validator
+
+### Initiate a Validator:
+```bash
+namadac init-validator \
+    --commission-rate 0.07 \
+    --max-commission-rate-change 1 \
+    --signing-keys $WALLET \
+    --alias $ALIAS \
+    --email <EMAIL_ADDRESS> \
+    --website <WEBSITE> \
+    --discord-handle <DISCORD> \
+    --account-keys $WALLET \
+    --memo $MEMO
+```
+
+### Find Your Validator Address:
+```bash
+namadaw list | grep -A 1 ""$ALIAS"" | grep "Established"
+```
+
+### Replace Your Validator Address and Save:
+```bash
+VALIDATOR_ADDRESS=$(namadaw list | grep -A 1 ""$ALIAS"" | grep "Established" | awk '{print $3}') 
+echo "export VALIDATOR_ADDRESS="$VALIDATOR_ADDRESS"" >> $HOME/.bash_profile 
+source $HOME/.bash_profile
+```
+
+### Restart the Node and Wait for 2 Epochs:
+```bash
+sudo systemctl restart namadad && sudo journalctl -u namadad -f
+```
+
+### Delegate Tokens:
+```bash
+namadac bond --validator $ALIAS --source $WALLET --amount 1000 --memo $MEMO
+```
+
+- Wait for 3 epochs and check if the validator is in the consensus set.
+- Check your validator bond status and find your validator status.
+- Add stake or unbond tokens as needed, following the respective commands.
