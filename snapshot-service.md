@@ -5,12 +5,12 @@ This guide outlines how to update the address book and genesis file for a node, 
 Refresh the addrbook hourly:
 
 ```bash
-wget -O $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/config/addrbook.json https://testnet-files.itrocket.net/namada/addrbook.json
+wget -O $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/config/addrbook.json https://testnet-files.posthuman.digital/namada/addrbook.json
 ```
 ## Genesis File 
 Fetch the latest genesis file:
 ```bash
-wget -O $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/config/genesis.json https://testnet-files.itrocket.net/namada/genesis.json
+wget -O $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/config/genesis.json https://testnet-files.posthuman.digital/namada/genesis.json
 ```
 
 ## Snapshot Service
@@ -18,7 +18,7 @@ Snapshot details - height: 159347, updated every 4 hours, size: 14GB. Download a
 
 ```bash
 cd $HOME
-wget -O snap_namada.tar https://testnet-files.itrocket.net/namada/snap_namada.tar
+wget -O snap_namada.tar https://testnet-files.posthuman.digital/namada/snap_namada.tar
 # Stop the node
 sudo systemctl stop namadad
 # Backup and prepare for the new snapshot
