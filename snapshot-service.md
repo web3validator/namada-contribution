@@ -14,7 +14,7 @@ wget -O $HOME/.local/share/namada/shielded-expedition.88f17d1d14/cometbft/config
 ```
 
 ## Snapshot Service
-Updated every 4 hours, size: ~ 20GB. Download and apply the snapshot with the following commands:
+Updated every 4 hours, size: ~ 10GB. Download and apply the snapshot with the following commands:
 
 ```bash
 cd $HOME
